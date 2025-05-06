@@ -3,12 +3,14 @@ const mongoose= require("mongoose")
 require("dotenv").config()
 
 const holaRoutes= require ("./routes/holaMundo. routes")
-require("dotenv").config()
+const entregasRoutes= require("./routes/entregas.routes")
 const app= express()
 const PORT= process.env.PORT || 3006
 
 app.set("port",PORT)
+app.use(express.json())
 app.use("/api/hola",holaRoutes)
+app.use("/api/entregas", entregasRoutes)
 
 app.get("/",(req,res)=>{
    res.send("Hola mundo")
