@@ -1,4 +1,7 @@
 const express = require("express")
+const mongoose= require("mongoose")
+require("dotenv").config()
+
 const holaRoutes= require ("./routes/holaMundo. routes")
 require("dotenv").config()
 const app= express()
@@ -10,6 +13,9 @@ app.use("/api/hola",holaRoutes)
 app.get("/",(req,res)=>{
    res.send("Hola mundo")
 })
+mongoose.connect(process.env.MONGO_URI)
+.then(console.log("Base de datos conectada"))
+.catch(err=>console.error("No se pudo conectar a la BD",err))
 
 app.listen(PORT,()=> {
     console.log(`Escuchando en el puerto ${PORT}`)
